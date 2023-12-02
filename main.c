@@ -1,33 +1,37 @@
 #include <gst/gst.h>
+#include <zlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-void usage(); // Declaration of the usage function
+#define CHUNK_SIZE 16384  // Tamaño del búfer para descomprimir
 
-//main
+// Declaración de la función de uso
+void usage();
+
 int main(int argc, char* argv[]) {
 
     const char* gz_file = NULL;
     const char* output_file_name = NULL;
 
     /* Handle program arguments */
+    if (argc < 4) {
+        fprintf(stderr, "Error: not enough program arguments\n");
+        usage();
+        return EXIT_FAILURE;
+    }
     for (int i = 1; i < argc; i += 2) {
-        if (strcmp(argv[i], "-help") == 0) {
-            usage();
-            return EXIT_SUCCESS;
-        }
-        else if (argc < 4) {
-            fprintf(stderr, "Error: not enough program arguments\n");
-            usage();
-            return EXIT_FAILURE;
-        }
-        else if (strcmp(argv[i], "-orig") == 0) {
+        if (strcmp(argv[i], "-orig") == 0) {
             gz_file = argv[i + 1];
             printf("Stream file (.gz) found!: %s\n", gz_file);
         }
         else if (strcmp(argv[i], "-out") == 0) {
             output_file_name = argv[i + 1];
         }
-        
+        else if (strcmp(argv[i], "-help") == 0){
+            usage();
+            return EXIT_SUCCESS;
+        }
         else {
             fprintf(stderr, "Invalid option: %s\n", argv[i]);
             usage();
