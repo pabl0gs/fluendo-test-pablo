@@ -7,7 +7,7 @@
 - [Uso](#uso)
 
 ## Comentarios generales
-Desde la honestidad, los requerimentos que se pedían en el Test eran demasiado complejos para mí. Por ello, hay algunos puntos que no cumplen los requerimientos:
+Desde la honestidad, los requerimentos que se pedían en el Test eran demasiado complejos para mí. He intentado hacer lo máximo que he podido con el tiempo que dispongo. Espero que mis conocimientos sean los esperados para un ingeniero junior. Por todo ello, hay algunos puntos que no cumplen los requerimientos:
 - El programa no puede ser llamado usando gst-launch-0.10 filesrc location=file.txt.gz ! gzdec ! filesink location="file.txt", sino tal y como está explicado en la sección Uso.
 - El procesamiento no se realiza correctamente. Si bien el archivo se descomprime, pasa a través de la pipeline y se guarda, no es legible a su salida. Por eso he decidido guardarlo como ".txt" automáticamente.
 
